@@ -51,6 +51,7 @@ SELECT * FROM student WHERE rollno = 1004;
 -- delete records from "student" table having rollno "1004"
 DELETE FROM student WHERE rollno = 1004;
 
+
 -- delete all the records from "student" table
 DELETE FROM student;
 
