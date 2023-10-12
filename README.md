@@ -332,7 +332,7 @@ DROP TABLE empinfo;
 
 ### 6. Delete one or more records from a table
 #### Deletion: 
-Deletion involves removing records from a table based on specified criteria.
+Deletion involves removing records from a tbale based on specified criteria.
 
 `DELETE` command is used to delete records in a table.
 
@@ -621,11 +621,11 @@ FOREIGN KEY (<column_name>) REFERENCES <referenced_table>(<referenced_column>)
 ```
 **Breakdown:**
 
-- `column_name`: Name of the column in the current table.
+- `<column_name>`: Name of the column in the current table.
 - `INT`: Data type of the column, typically matching the referenced column's data type.
 - `FOREIGN KEY`: Constraint indicating a reference to another table.
-- `(column_name)`: Column to which the foreign key is applied.
-- `REFERENCES referenced_table(referenced_column)`: Specifies the table and column being referenced.
+- `(<column_name>)`: Column to which the foreign key is applied.
+- `REFERENCES <referenced_table>(<referenced_column>)`: Specifies the table and column being referenced.
 
 **Example:**
 ```sql
@@ -643,12 +643,39 @@ CREATE TABLE orders
 >- if a column is not `primary key` in its original table, then it can not become a `foreign key`.
 >- a table can have multiple `foreign keys`.
 
-### 3. UNIQUE KEY Constraint:
-- it enforces uniqueness in a column of a table.
-- it permits null values.
-- this key ensures integrity of data in a table.
-- unique key prevents duplicate data insertion.
+### 3. CANDIDATE KEY Constraint:
+- is a unique key which is used to identify the data uniquely in the column.
+- we can have multiple candidate key in a table.
+- `UNIQUE` constraint is used to define `Candidate key`.
 
+  #### UNIQUE KEY Constraint:
+  - it enforces uniqueness in a column of a table.
+  - it permits null values.
+  - this key ensures integrity of data in a table.
+  - unique key prevents duplicate data insertion.
+
+**Syntax:**
+```sql
+<column_name> <data_type> UNIQUE
+```
+**Breakdown:**
+
+- `<column_name>`: Name of the column in the current table.
+- `<data_type>`: type of data the column will store.
+- `UNIQUE`: constraint to make a column a candidate key.
+
+**Example:**
+```sql
+CREATE TABLE emp 
+(
+    emp_id int PRIMARY KEY,
+    emp_mail varchar(50) UNIQUE,
+    emp_name varhcar(30)
+);
+```
+
+>Note:
+>- its not confirmed that a candidate key can be a primary key.
 
 ### 4. AUTO_INCREMENT Constraint:
 - is used to generate a unique numeric value automatically for a column.
@@ -674,3 +701,36 @@ CREATE TABLE person (
     address VARCHAR(50)
 );
 ```
+<!--
+## SQL Views
+- in SQL, a `view` is a `virtual table` based on the `result-set` of an SQL statement.
+
+## SQL Stored Procedures
+- are the user-defined functions.
+- are used to perform specific task.
+- are reusable.
+
+**Syntax:**
+- simple `stored procedures`
+```sql
+CREATE PROCEDURE show_table(IN table char(10))
+BEGIN
+SELECT * FROM tbl=table;
+END;
+```
+- to execute the above `stored procedure`
+```sql
+CALL show_table(person);
+
+- `stored procedure` with single parameter
+```sql
+CREATE PROCEDURE show_account(IN account_id int)
+BEGIN
+SELECT * FROM account WHERE acid = account_id;
+END;
+```
+- to execute the above `stored procedure`
+```sql
+CALL show_account(1);
+```
+-->
